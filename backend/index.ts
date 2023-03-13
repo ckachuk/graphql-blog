@@ -7,12 +7,15 @@ import cors from "cors"
 import bodyParser from "body-parser"
 import { typeDefs } from "./schema/type-defs.js"
 import { resolvers } from "./schema/resolvers.js"
+import { connectDB } from "./db.js"
 
 interface MyContext {
   token?: string
 }
+connectDB()
 
 const app = express()
+
 const httpServer = http.createServer(app)
 
 const server = new ApolloServer<MyContext>({

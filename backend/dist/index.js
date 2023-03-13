@@ -7,6 +7,8 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import { typeDefs } from "./schema/type-defs.js";
 import { resolvers } from "./schema/resolvers.js";
+import { connectDB } from "./db.js";
+connectDB();
 const app = express();
 const httpServer = http.createServer(app);
 const server = new ApolloServer({
@@ -15,7 +17,7 @@ const server = new ApolloServer({
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
 await server.start();
-app.use("/", cors(), bodyParser.json(), expressMiddleware(server, {
+app.use("/graphql", cors(), bodyParser.json(), expressMiddleware(server, {
     context: async ({ req }) => ({ token: req.headers.token }),
 }));
 await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
