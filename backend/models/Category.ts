@@ -6,4 +6,4 @@ const CategorySchema = new Schema({
   name: { type: String, require: true, minLength: 3 },
 })
 
-module.exports = mongoose.model("Category", CategorySchema)
+export default mongoose.model("Category", CategorySchema)
