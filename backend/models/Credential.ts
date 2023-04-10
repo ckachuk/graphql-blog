@@ -7,4 +7,4 @@ const CredentialsSchema = new Schema({
   isAdmin: { type: Boolean, require: true },
 })
 
-export default mongoose.model("Credentials", CredentialsSchema)
+export default mongoose.model("Credential", CredentialsSchema)

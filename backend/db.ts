@@ -1,8 +1,12 @@
 import mongoose from "mongoose"
-
+import * as dotenv from "dotenv"
+dotenv.config()
 export const connectDB = async () => {
   try {
-    const conn = await mongoose.connect("mongodb://localhost/graphql-blog")
+    mongoose.set("strictQuery", false)
+    const conn = await mongoose.connect(
+      `mongodb+srv://carloskachuk:${process.env.DB_PASS}@cluster0.0s3ubhg.mongodb.net/test`
+    )
 
     console.log(`Mongodb connected: ${conn.connection.name}`)
   } catch (err) {
